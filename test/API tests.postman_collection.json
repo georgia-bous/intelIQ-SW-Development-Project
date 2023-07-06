@@ -1,0 +1,941 @@
+{
+	"info": {
+		"_postman_id": "1d2bf9ab-57e5-4a28-937e-eadf336d070c",
+		"name": "API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "questionnaireID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var nested=[{\r",
+							"    \"qID\":\"PXX\", \"qtext\":\"qt1\", \"required\":false,\"type\":\"question\"\r",
+							"    }];\r",
+							"\r",
+							"// Check the response body\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql(\"QQXXX\");\r",
+							"    pm.expect(jsonData.questionnaireTitle).to.eql(\"TEST\");\r",
+							"    pm.expect(jsonData.keywords).to.eql(['t1', 't2']);\r",
+							"    pm.expect(jsonData.questions).to.eql(nested);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/questionnaire/QQXXX?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						"QQXXX"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var nested=[{\"qID\":\"PXX\", \"qtext\":\"qt1\", \"required\":false,\"type\":\"question\", \"options\":[{\"optID\":\"OOXX\", \"opttxt\":\"ot\", \"nextqID\":\"QQYYY\"}]}];\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql('QQXXX');\r",
+							"    pm.expect(jsonData.questionnaireTitle).to.eql(\"TEST\");\r",
+							"    pm.expect(jsonData.keywords).to.eql(['t1', 't2']);\r",
+							"    pm.expect(jsonData.questions[0].qID).to.eql(nested[0].qID);\r",
+							"    pm.expect(jsonData.questions[0].qtext).to.eql(nested[0].qtext);\r",
+							"    pm.expect(jsonData.questions[0].required).to.eql(nested[0].required);\r",
+							"    pm.expect(jsonData.questions[0].type).to.eql(nested[0].type);\r",
+							"    pm.expect(jsonData.questions[0].options.optID).to.eql(nested[0].options.optID);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/tests_create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"tests_create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var nested=[{\"optID\":\"OOXX\", \"opttxt\":\"ot\", \"nextqID\":\"QQYYY\"}]\r",
+							"\r",
+							"// Check the response body\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql(\"QQXXX\");\r",
+							"    pm.expect(jsonData.qID).to.eql(\"PXX\");\r",
+							"    pm.expect(jsonData.qtext).to.eql('qt1');\r",
+							"    pm.expect(jsonData.required).to.eql(false);\r",
+							"    pm.expect(jsonData.type).to.eql('question');\r",
+							"    pm.expect(jsonData.options).to.eql(nested);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/question/QQXXX/PXX",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"question",
+						"QQXXX",
+						"PXX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaire_csv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to text/csv\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"text/csv\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is a CSV file\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    pm.expect(responseText).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected columns\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    var headers = rows[0].split(\",\");\r",
+							"    pm.expect(headers).to.include(\"questionnaireID\");\r",
+							"    pm.expect(headers).to.include(\"questionnaireTitle\");\r",
+							"    pm.expect(headers).to.include(\"keywords\");\r",
+							"    pm.expect(headers).to.include(\"questions\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected data\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    \r",
+							"    pm.expect(rows[1]).to.eql('QQXXX,TEST,\"t1,t2\",\"{ qID: \\'PXX\\', qtext: \\'qt1\\', required: false, type: \\'question\\' }\"')\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/questionnaire/QQXXX?format=csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						"QQXXX"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionnaire_402",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402\", function () {\r",
+							"    pm.response.to.have.status(402);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/questionnaire/QQXXXx?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						"QQXXXx"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionID_csv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to text/csv\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"text/csv\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is a CSV file\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    pm.expect(responseText).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected columns\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    var headers = rows[0].split(\",\");\r",
+							"    pm.expect(headers).to.include(\"questionnaireID\");\r",
+							"    pm.expect(headers).to.include(\"qID\");\r",
+							"    pm.expect(headers).to.include(\"qtext\");\r",
+							"    pm.expect(headers).to.include(\"required\");\r",
+							"    pm.expect(headers).to.include(\"type\");\r",
+							"    pm.expect(headers).to.include(\"options\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected data\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    \r",
+							"    pm.expect(rows[1]).to.eql('QQXXX,PXX,qt1,false,question,\"{ optID: \\'OOXX\\', opttxt: \\'ot\\', nextqID: \\'QQYYY\\' }\"')\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/question/QQXXX/PXX?format=csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"question",
+						"QQXXX",
+						"PXX"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "questionID_402",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402\", function () {\r",
+							"    pm.response.to.have.status(402);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9103/intelliq_api/questionnaire/QQXXXx?format=csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"questionnaire",
+						"QQXXXx"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcheck",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"    pm.expect(jsonData.dbconnection).to.eql(\"Everything is okey\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/admin/healthcheck",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql(\"QQ000\");\r",
+							"    pm.expect(jsonData.questionnaireTitle).to.eql(\"My first research questionnaire\");\r",
+							"    pm.expect(jsonData.keywords).to.eql([\r",
+							"        \"footbal\",\r",
+							"        \"islands\",\r",
+							"        \"timezone\"\r",
+							"    ]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/User/Documents/ΗΜΜΥ/ΤΛ/tlproject3/uploads/questionnaire.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9103/intelliq_api/admin/questionnaire_upd",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"questionnaire_upd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload_bad_file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/User/Documents/ΗΜΜΥ/ΤΛ/tlproject3/model/Questionnaire.js"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9103/intelliq_api/admin/questionnaire_upd",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"questionnaire_upd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetall",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/admin/resetall",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetq",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/admin/resetq/QQXXX",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"admin",
+						"resetq",
+						"QQXXX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "doanswer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/doanswer/QQXXX/PXX/SS000/OOXX",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"doanswer",
+						"QQXXX",
+						"PXX",
+						"SS000",
+						"OOXX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getsessionanswers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Check the response body\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql(\"QQXXX\");\r",
+							"    pm.expect(jsonData.session).to.eql(\"SS000\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getsessionanswers/QQXXX/SS000",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getsessionanswers",
+						"QQXXX",
+						"SS000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getsessionanswers_csv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to text/csv\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"text/csv\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is a CSV file\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    pm.expect(responseText).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected columns\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    var headers = rows[0].split(\",\");\r",
+							"    pm.expect(headers).to.include(\"questionnaireID\");\r",
+							"    pm.expect(headers).to.include(\"session\");\r",
+							"    pm.expect(headers).to.include(\"answers\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected data\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    \r",
+							"    var data = [];\r",
+							"    for (var i = 1; i < rows.length; i++) {\r",
+							"        var cells = rows[i].split(\",\");\r",
+							"        data.push(cells);\r",
+							"    }\r",
+							"    pm.expect(data[0][0]).to.equal(\"QQXXX\");\r",
+							"    pm.expect(data[0][1]).to.equal(\"SS000\");\r",
+							"    pm.expect(data[0][2]).to.equal('\"{ qID: \\'PXX\\'');\r",
+							"    pm.expect(data[0][3]).to.equal(' ans: \\'OOXX\\' }');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getsessionanswers/QQXXX/SS000?format=csv",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getsessionanswers",
+						"QQXXX",
+						"SS000"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getsessionanswers_402",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402\", function () {\r",
+							"    pm.response.to.have.status(402);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getsessionanswers/QQXXXx/SS000?format=csv",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getsessionanswers",
+						"QQXXXx",
+						"SS000"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getquestionanswers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Check the response body\r",
+							"pm.test(\"Response body contains expected data\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.questionnaireID).to.eql(\"QQXXX\");\r",
+							"    pm.expect(jsonData.questionID).to.eql(\"PXX\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getquestionanswers/QQXXX/PXX",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getquestionanswers",
+						"QQXXX",
+						"PXX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getquestionanswers_csv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to text/csv\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"text/csv\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is a CSV file\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    pm.expect(responseText).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected columns\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    var headers = rows[0].split(\",\");\r",
+							"    pm.expect(headers).to.include(\"questionnaireID\");\r",
+							"    pm.expect(headers).to.include(\"questionID\");\r",
+							"    pm.expect(headers).to.include(\"answers\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response CSV has expected data\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    var rows = responseText.split(\"\\n\");\r",
+							"    \r",
+							"    var data = [];\r",
+							"    for (var i = 1; i < rows.length; i++) {\r",
+							"        var cells = rows[i].split(\",\");\r",
+							"        data.push(cells);\r",
+							"    }\r",
+							"    pm.expect(data[0][0]).to.equal(\"QQXXX\");\r",
+							"    pm.expect(data[0][1]).to.equal(\"PXX\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getquestionanswers/QQXXX/PXX?format=csv",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getquestionanswers",
+						"QQXXX",
+						"PXX"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getquestionanswers_402",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402\", function () {\r",
+							"    pm.response.to.have.status(402);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9103/intelliq_api/getquestionanswers/QQXXXx/PXXx?format=csv",
+					"host": [
+						"localhost"
+					],
+					"port": "9103",
+					"path": [
+						"intelliq_api",
+						"getquestionanswers",
+						"QQXXXx",
+						"PXXx"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

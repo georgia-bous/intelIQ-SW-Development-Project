@@ -1,0 +1,281 @@
+{
+    "questionnaireID": "QQ005",
+    "questionnaireTitle": "My sixth research questionnaire",
+    "keywords": [
+        "screentime",
+        "health",
+        "smartphone"
+    ],
+    "questions": [
+        {
+            "qID": "P00",
+            "qtext": "How old are you?",
+            "required": "false",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "Q01A1",
+                    "opttxt": "Less than 20",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A2",
+                    "opttxt": "20-40",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A3",
+                    "opttxt": "40-60",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A4",
+                    "opttxt": "60-80",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A5",
+                    "opttxt": "80+",
+                    "nextqID": "Q02"
+                }
+            ]
+        },
+        {
+            "qID": "Q01",
+            "qtext": "How many hours per day do you spend on your phone?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q01A1",
+                    "opttxt": "Less than 1 hour",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A2",
+                    "opttxt": "1-2 hours",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A3",
+                    "opttxt": "2-3 hours",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A4",
+                    "opttxt": "3-4 hours",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A5",
+                    "opttxt": "More than 4 hours",
+                    "nextqID": "Q02"
+                }
+            ]
+        },
+        {
+            "qID": "Q02",
+            "qtext": "Do you consider your relationship with your phone healthy?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q02A1",
+                    "opttxt": "Yes",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A2",
+                    "opttxt": "No",
+                    "nextqID": "Q04"
+                }
+            ]
+        },
+        {
+            "qID": "Q03",
+            "qtext": "Are you finding satisfaction in scrolling?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q03A1",
+                    "opttxt": "Yes",
+                    "nextqID": "Q04"
+                },
+                {
+                    "optID": "Q03A2",
+                    "opttxt": "No",
+                    "nextqID": "Q04"
+                }
+            ]
+        },
+        {
+            "qID": "Q04",
+            "qtext": "How would you rate the content you see when scrolling?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q04A1",
+                    "opttxt": "Excellent",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A2",
+                    "opttxt": "Good",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A3",
+                    "opttxt": "Fair",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A4",
+                    "opttxt": "Poor",
+                    "nextqID": "Q05"
+                }
+            ]
+        },
+        {
+            "qID": "Q05",
+            "qtext": "How often do you think about changing your smartphone habits?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q05A1",
+                    "opttxt": "Always",
+                    "nextqID": "Q06"
+                },
+                {
+                    "optID": "Q05A2",
+                    "opttxt": "Often",
+                    "nextqID": "Q06"
+                },
+                {
+                    "optID": "Q05A3",
+                    "opttxt": "Sometimes",
+                    "nextqID": "Q06"
+                },
+                {
+                    "optID": "Q05A4",
+                    "opttxt": "Never",
+                    "nextqID": "Q06"
+                }
+            ]
+        },
+        {
+            "qID": "Q06",
+            "qtext": "How much time do you spend on screens generally?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q06A1",
+                    "opttxt": "4 hours +",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A2",
+                    "opttxt": "3-4 hours",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A3",
+                    "opttxt": "1-3 hours",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A4",
+                    "opttxt": "<1 hour",
+                    "nextqID": "Q07"
+                }
+            ]
+        },
+        {
+            "qID": "Q07",
+            "qtext": "How much do you think your screentime affects your life negatively?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q07A1",
+                    "opttxt": "A lot",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A2",
+                    "opttxt": "Somewhat",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A3",
+                    "opttxt": "A little",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A4",
+                    "opttxt": "Not at all",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q08",
+            "qtext": "How much do you think your physical fitness is affected by your screentime?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q08A1",
+                    "opttxt": "A lot",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A2",
+                    "opttxt": "Somewhat",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A3",
+                    "opttxt": "A little",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A4",
+                    "opttxt": "Not at all",
+                    "nextqID": "Q09"
+                }
+            ]
+        },
+        {
+            "qID": "Q09",
+            "qtext": "How much do you think school provides sufficient knowledge about technology habits?",
+            "required": "true",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q09A1",
+                    "opttxt": "A lot",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q09A2",
+                    "opttxt": "Somewhat",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q09A3",
+                    "opttxt": "A little",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q09A4",
+                    "opttxt": "Not at all",
+                    "nextqID": "-"
+                }
+            ]
+        }
+    ]
+}

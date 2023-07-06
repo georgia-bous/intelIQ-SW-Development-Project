@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "intelliq",
+    "slug": "intelliq",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "intelliq"
+}
