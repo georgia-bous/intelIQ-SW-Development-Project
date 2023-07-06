@@ -16,6 +16,7 @@ The user can do the following actions through two interfaces (UI/ backend and CL
 -see all the answers and all the sessions for a specific question
 
 (only 5, 6, 7th points are implemented in the frontend)
+
 The REST API returns data in json (default) or csv format, spedified as a parameter in the call.
 
 The REST API is on base URL:  https://{{host}}:9103/intelliq_api   ,where {{host}} is localhost.
