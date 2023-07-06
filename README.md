@@ -23,4 +23,29 @@ The REST API is on base URL:  https://{{host}}:9103/intelliq_api   ,where {{host
 The REST endpoints are on:    {baseURL}/{service}/{path-to-resource}?format={json|csv}
 
 HOW TO USE:
-Run the app.js for the server to start. You can test the backend through POSTMAN calls (a series of tests is provided in the test folder).
+In an empty folder run the commands: 
+npm init -y 
+npm install nodejs 
+npm install express
+npm install dotenv 
+npm install mongoose 
+npm install multer 
+npm install csv-writer 
+npm install --save commander 
+npm install jest 
+npm install json2csv 
+npm i cors 
+npm i nodemon 
+git clone git@github.com:georgia-bous/intelIQ-SW-Development-Project.git
+
+change package.json as: 
+"preferGlobal": true, "bin": { "se2209": "./commands.js" },
+"start": "nodemon app.js" add to api "main": "app.js",
+
+For the CLI (https://www.youtube.com/watch?v=v2GKt39-LPA):
+npm install --save commander
+npm install jest
+npm link
+
+Run the app.js for the server to start. 
+You can test the backend through POSTMAN calls (a series of tests is provided in the test folder).
