@@ -21,3 +21,6 @@ The REST API returns data in json (default) or csv format, spedified as a parame
 
 The REST API is on base URL:  https://{{host}}:9103/intelliq_api   ,where {{host}} is localhost.
 The REST endpoints are on:    {baseURL}/{service}/{path-to-resource}?format={json|csv}
+
+HOW TO USE:
+Run the app.js for the server to start. You can test the backend through POSTMAN calls (a series of tests is provided).
